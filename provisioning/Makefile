@@ -2,4 +2,10 @@ main:
 	ansible-playbook -i hosts.yml main.yml
 
 upgrade:
-	ansible-playbook upgrade.yml -i hosts.yml
+	ansible-playbook -i hosts.yml upgrade.yml
+
+deploy:
+	ansible-playbook -i hosts.yml deploy.yml
+
+authorize:
+	ansible-playbook -i hosts.yml authorize.yml

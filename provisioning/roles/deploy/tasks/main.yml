@@ -1,0 +1,5 @@
+---
+- name: Copy files
+  copy:
+    src: "{{ jenkins_directory }}"
+    dest: "{{ jenkins_output_directory }}"
