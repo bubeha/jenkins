@@ -1,5 +1,11 @@
 ---
+- name: Check if exists directory
+  stat:
+    path: "{{ jenkins_directory }}"
+    register: file_details
+
 - name: Copy files
   copy:
     src: "{{ jenkins_directory }}"
     dest: "{{ jenkins_output_directory }}"
+  when: not file_details.stat.exists
