@@ -1,0 +1,5 @@
+---
+- name: Deploy manager
+  hosts: ci
+  roles:
+    - deploy

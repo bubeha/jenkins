@@ -6,5 +6,4 @@
     - swap
     - docker
     - certbot
-    - deploy
     - jenkins

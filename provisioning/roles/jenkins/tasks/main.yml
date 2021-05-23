@@ -24,8 +24,3 @@
 - name: Down certbot Apache
   shell: "docker rm -f apache"
   when: port_check.failed == true
-
-#- name: Add Certbot hook
-#  lineinfile:
-#    path: /etc/letsencrypt/cli.ini
-#    line: "post-hook = /bin/sh -c 'cd /home/deploy/jenkins && docker-compose restart nginx'"
