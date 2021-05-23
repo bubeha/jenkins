@@ -2,9 +2,9 @@
 - name: Provision manager
   hosts: all
   roles:
-    - deploy
     - dependencies
     - swap
     - docker
     - certbot
+    - deploy
     - jenkins

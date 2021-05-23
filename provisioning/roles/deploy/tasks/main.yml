@@ -1,11 +1,35 @@
 ---
 - name: Check if exists directory
   stat:
-    path: "{{ jenkins_directory }}"
-    register: file_details
+    path: "{{ jenkins_output_directory }}"
+  register: file_details
 
-- name: Copy files
+- name: Copy docker directory
   copy:
-    src: "{{ jenkins_directory }}"
+    src: "{{ jenkins_directory }}/docker"
+    dest: "{{ jenkins_output_directory }}"
+  when: not file_details.stat.exists
+
+- name: Copy .env
+  copy:
+    src: "{{ jenkins_directory }}/.env"
+    dest: "{{ jenkins_output_directory }}"
+  when: not file_details.stat.exists
+
+- name: Copy docker-compose production configs
+  copy:
+    src: "{{ jenkins_directory }}/docker-compose.prod.yml"
+    dest: "{{ jenkins_output_directory }}"
+  when: not file_details.stat.exists
+
+- name: Copy docker-compose configs
+  copy:
+    src: "{{ jenkins_directory }}/docker-compose.yml"
+    dest: "{{ jenkins_output_directory }}"
+  when: not file_details.stat.exists
+
+- name: Copy Makefile
+  copy:
+    src: "{{ jenkins_directory }}/Makefile"
     dest: "{{ jenkins_output_directory }}"
   when: not file_details.stat.exists

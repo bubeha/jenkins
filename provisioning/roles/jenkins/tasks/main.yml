@@ -25,15 +25,7 @@
   shell: "docker rm -f apache"
   when: port_check.failed == true
 
-- name: Create deploy user
-  user:
-    name: deploy
-    password: '!'
-    groups:
-      - docker
-    state: present
-
-- name: Add Certbot hook
-  lineinfile:
-    path: /etc/letsencrypt/cli.ini
-    line: "post-hook = /bin/sh -c 'cd /home/deploy/jenkins && docker-compose restart nginx'"
+#- name: Add Certbot hook
+#  lineinfile:
+#    path: /etc/letsencrypt/cli.ini
+#    line: "post-hook = /bin/sh -c 'cd /home/deploy/jenkins && docker-compose restart nginx'"
