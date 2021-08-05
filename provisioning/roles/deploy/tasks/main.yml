@@ -24,10 +24,16 @@
     src: "{{ jenkins_directory }}/Makefile"
     dest: "{{ jenkins_output_directory }}"
 
+- name: Check /etc/letsencrypt/cli.ini exists
+  stat:
+    path: /etc/letsencrypt/cli.ini
+  register: stat_result
+
 - name: Add Certbot hook
   lineinfile:
     path: /etc/letsencrypt/cli.ini
     line: "post-hook = /bin/sh -c 'cd {{ jenkins_output_directory }} && docker-compose restart nginx'"
+  when: stat_result.stat.exists
 
 - name: Run application
   command: make --directory="{{ jenkins_output_directory }}" start-production
