@@ -1,6 +1,5 @@
 # Jenkins + Docker
-
-<img src="https://jenkins.io/sites/default/files/jenkins_logo.png"/>
+![Jenkins + Docker](images/jenkins_docker.png "Jenkins + Docker")
 
 # Usage for local environment
 
