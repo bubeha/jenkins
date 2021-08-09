@@ -1,9 +1,12 @@
 ---
 - name: Provision manager
   hosts: all
+  vars_files:
+    - default.yml
   roles:
     - dependencies
     - swap
     - docker
     - certbot
     - jenkins
+    - deploy

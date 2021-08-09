@@ -1,28 +1,9 @@
 ---
-- name: Copy docker directory
+- name: Copy files to remote directory
   copy:
-    src: "{{ jenkins_directory }}/docker"
-    dest: "{{ jenkins_output_directory }}"
-
-- name: Copy .env
-  copy:
-    src: "{{ jenkins_directory }}/.env"
-    dest: "{{ jenkins_output_directory }}"
-
-- name: Copy docker-compose production configs
-  copy:
-    src: "{{ jenkins_directory }}/docker-compose.prod.yml"
-    dest: "{{ jenkins_output_directory }}"
-
-- name: Copy docker-compose configs
-  copy:
-    src: "{{ jenkins_directory }}/docker-compose.yml"
-    dest: "{{ jenkins_output_directory }}"
-
-- name: Copy Makefile
-  copy:
-    src: "{{ jenkins_directory }}/Makefile"
-    dest: "{{ jenkins_output_directory }}"
+    src: "{{ item }}"
+    dest: "{{ jenkins_remote_directory }}"
+  with_items: "{{ deploy_files }}"
 
 - name: Check /etc/letsencrypt/cli.ini exists
   stat:
@@ -32,7 +13,7 @@
 - name: Add Certbot hook
   lineinfile:
     path: /etc/letsencrypt/cli.ini
-    line: "post-hook = /bin/sh -c 'cd {{ jenkins_output_directory }} && docker-compose restart nginx'"
+    line: "post-hook = /bin/sh -c 'cd {{ jenkins_remote_directory }} && docker-compose restart nginx'"
   when: stat_result.stat.exists
 
 - name: Run application

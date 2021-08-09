@@ -1,0 +1,4 @@
+jenkins_remote_directory: "/home/jenkins/"
+certbot_email: "some.email.com"
+certbot_hosts:
+  - "example.com"

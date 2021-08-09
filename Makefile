@@ -1,14 +1,16 @@
+DOCKER_COMPOSE = docker-compose
+
 down:
-	docker-compose down --remove-orphans
+	$(DOCKER_COMPOSE) down --remove-orphans
 
 build: down
-	docker-compose build --pull
+	$(DOCKER_COMPOSE) build --pull
 
 start: build
-	docker-compose up -dls
+	$(DOCKER_COMPOSE) up -dls
 
 show-initial-password:
-	docker-compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+	$(DOCKER_COMPOSE) exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 start-production: down
-	docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
+	$(DOCKER_COMPOSE) -f docker-compose.yml -f docker-compose.prod.yml up -d --build

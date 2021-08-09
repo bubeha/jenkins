@@ -1,0 +1,6 @@
+deploy_files:
+  - "{{ lookup('env', 'PWD') }}/../docker"
+  - "{{ lookup('env', 'PWD') }}/../.env"
+  - "{{ lookup('env', 'PWD') }}/../docker-compose.prod.yml"
+  - "{{ lookup('env', 'PWD') }}/../docker-compose.yml"
+  - "{{ lookup('env', 'PWD') }}/../Makefile"

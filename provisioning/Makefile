@@ -1,8 +1,8 @@
+ANSIBLE = ansible-playbook
+HOSTS = hosts.yml
+
 main:
-	ansible-playbook -i hosts.yml main.yml
+	$(ANSIBLE) -i $(HOSTS) main.yml
 
 upgrade:
-	ansible-playbook -i hosts.yml upgrade.yml
-
-deploy: main
-	ansible-playbook -i hosts.yml deploy.yml
+	$(ANSIBLE) -i $(HOSTS) upgrade.yml
