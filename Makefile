@@ -7,7 +7,7 @@ build: down
 	$(DOCKER_COMPOSE) build --pull
 
 start: build
-	$(DOCKER_COMPOSE) up -dls
+	$(DOCKER_COMPOSE) up -d
 
 show-initial-password:
 	$(DOCKER_COMPOSE) exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
